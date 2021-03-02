@@ -1,33 +1,29 @@
 import './App.css';
 
-const PersonInformation = ({
-  color,
-  name,
-  location,
-  birthdate,
-  pets,
-  vegetarian
-}) => {
-  return (
-    <div style={{ color: color }}>
-      <h3>{name}</h3>
-      <p>Location: {location}</p>
-      <strong>Favorite color: {color}</strong>
-      <br />
-      <small>Birthdate: {birthdate.toUTCString()}</small>
-      <br />
-      <span>Pets: {pets.join(', ')}</span>
-      <br />
-      <span>This person {vegetarian ? 'is' : 'is not'} vegetarian.</span>
-    </div>
-  );
-};
+class PersonInformation extends React.Component {
+  render() {
+    const { color, name, location, birthdate, pets, vegetarian } = this.props;
+    return (
+      <div style={{ color: color }}>
+        <h3>{name}</h3>
+        <p>Location: {location}</p>
+        <strong>Favorite color: {color}</strong>
+        <br />
+        <small>Birthdate: {birthdate.toUTCString()}</small>
+        <br />
+        <span>Pets: {pets.join(', ')}</span>
+        <br />
+        <span>This person {vegetarian ? 'is' : 'is not'} vegetarian.</span>
+      </div>
+    );
+  }
+}
 
-const PetInformation = props => {
+const PetInformation = ({ name, children }) => {
   return (
     <div>
-      <h3>{props.name}</h3>
-      {props.children}
+      <h3>{name}</h3>
+      {children}
     </div>
   );
 };
