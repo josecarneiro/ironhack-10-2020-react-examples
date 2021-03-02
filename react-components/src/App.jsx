@@ -19,7 +19,10 @@ class PersonInformation extends React.Component {
   }
 }
 
-const PetInformation = ({ name, children }) => {
+const PetInformation = props => {
+  // const { name, children } = props;
+  const children = props.children;
+  const name = props.name;
   return (
     <div>
       <h3>{name}</h3>
