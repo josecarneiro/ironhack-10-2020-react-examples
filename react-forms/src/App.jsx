@@ -29,29 +29,38 @@ class App extends React.Component {
     });
   };
 
+  handleSubmission = event => {
+    event.preventDefault();
+    const { name, age, city } = this.state;
+    alert(`The form was submited with ${name}, ${age} and ${city}.`);
+  };
+
   render() {
     return (
       <div className="App">
-        <input
-          type="text"
-          placeholder="First Name"
-          onChange={this.handleNameChange}
-          value={this.state.name}
-        />
-        <input
-          type="text"
-          placeholder="Age"
-          name="age"
-          onChange={this.handleGenericChange}
-          value={this.state.age}
-        />
-        <input
-          type="text"
-          placeholder="City"
-          name="city"
-          onChange={this.handleGenericChange}
-          value={this.state.city}
-        />
+        <form onSubmit={this.handleSubmission}>
+          <input
+            type="text"
+            placeholder="First Name"
+            onChange={this.handleNameChange}
+            value={this.state.name}
+          />
+          <input
+            type="text"
+            placeholder="Age"
+            name="age"
+            onChange={this.handleGenericChange}
+            value={this.state.age}
+          />
+          <input
+            type="text"
+            placeholder="City"
+            name="city"
+            onChange={this.handleGenericChange}
+            value={this.state.city}
+          />
+          <button>Submit</button>
+        </form>
         <p>
           Hello, my name is {this.state.name}, I am {this.state.age} years old
           and I live in {this.state.city}.
