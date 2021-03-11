@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1984-george-orwell",
+    "name": "1984",
+    "author": "George Orwell",
+    "pages": 328,
+    "date": "8/6/1949"
+  },
+  {
+    "id": "coders-clive-thompson",
+    "name": "Coders",
+    "author": "Clive Thompson",
+    "pages": 412,
+    "date": "3/4/2019"
+  },
+  {
+    "id": "life-3-0-max-tegmark",
+    "name": "Life 3.0",
+    "author": "Max Tegmark",
+    "pages": 317,
+    "date": "27/8/2017"
+  }
+]

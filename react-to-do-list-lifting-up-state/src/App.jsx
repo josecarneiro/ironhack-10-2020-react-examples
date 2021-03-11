@@ -1,13 +1,50 @@
 import React from 'react';
 import './App.css';
 
+class App extends React.Component {
+  state = {
+    tasks: [
+      { id: '123', content: 'Walk the dogs' },
+      { id: '456', content: 'Shop for groceries' }
+    ]
+  };
+
+  removeTask = id => {
+    const tasksClone = this.state.tasks.filter(task => task.id !== id);
+    this.setState({
+      tasks: tasksClone
+    });
+  };
+
+  createTask = task => {
+    this.setState({
+      tasks: [task, ...this.state.tasks]
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <TaskInput onTaskCreate={this.createTask} />
+        <ul>
+          {this.state.tasks.map(task => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              onRemoveTask={() => this.removeTask(task.id)}
+            />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
 const TaskItem = props => {
-  const task = props.task;
-  const onRemoveTask = props.onRemoveTask;
   return (
     <li>
-      {task.content}
-      <button onClick={onRemoveTask}>✔️</button>
+      {props.task.content}
+      <button onClick={props.onRemoveTask}>✔️</button>
     </li>
   );
 };
@@ -50,45 +87,6 @@ class TaskInput extends React.Component {
         />
         <button>Add to list</button>
       </form>
-    );
-  }
-}
-
-class App extends React.Component {
-  state = {
-    tasks: [
-      { id: '123', content: 'Walk the dogs' },
-      { id: '456', content: 'Shop for groceries' }
-    ]
-  };
-
-  removeTask = id => {
-    const tasksClone = this.state.tasks.filter(task => task.id !== id);
-    this.setState({
-      tasks: tasksClone
-    });
-  };
-
-  createTask = task => {
-    this.setState({
-      tasks: [task, ...this.state.tasks]
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <TaskInput onTaskCreate={this.createTask} />
-        <ul>
-          {this.state.tasks.map(task => (
-            <TaskItem
-              key={task.id}
-              task={task}
-              onRemoveTask={() => this.removeTask(task.id)}
-            />
-          ))}
-        </ul>
-      </div>
     );
   }
 }

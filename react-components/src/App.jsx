@@ -20,7 +20,6 @@ class PersonInformation extends React.Component {
 }
 
 const PetInformation = props => {
-  // const { name, children } = props;
   const children = props.children;
   const name = props.name;
   return (
@@ -58,8 +57,27 @@ function App() {
       <PetInformation name="Whiskers">
         <span>Is a poorly behaved cat.</span>
       </PetInformation>
+
+      <SpecialComponent>
+        <input type="text" />
+        <img src="" alt="" />
+        <div>
+          <PetInformation name="Whiskers">
+            <span>Is a poorly behaved cat.</span>
+          </PetInformation>
+        </div>
+      </SpecialComponent>
     </div>
   );
 }
+
+const SpecialComponent = props => {
+  return (
+    <div>
+      <p>Hello world</p>
+      {props.children}
+    </div>
+  );
+};
 
 export default App;
