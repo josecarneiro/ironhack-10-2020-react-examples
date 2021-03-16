@@ -1,22 +1,42 @@
 import './App.css';
 
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
 
 import BookList from './views/BookList';
 import SingleBook from './views/SingleBook';
+import ErrorView from './views/ErrorView';
+
+// Redirect
+// How can we use router props in components other than view components
+// How do we pass custom props to view components
+
+// How do we protect a route
+
+// const x = { a: 1, b: 2 };
+// const y = { ...x };
+
+// const w = [1, 2];
+// const z = [...w];
 
 function App() {
+  const favoriteBook = '1984';
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Book List</Link>
-        <Link to="/book/1984-george-orwell">1984-george-orwell</Link>
-        <Link to="/book/coders-clive-thompson">coders-clive-thompson</Link>
-        <Link to="/book/life-3-0-max-tegmark">life-3-0-max-tegmark</Link>
-      </nav>
+      <Navbar />
       <Switch>
         <Route path="/" component={BookList} exact />
-        <Route path="/book/:id" component={SingleBook} exact />
+        {/* Passing custom props to a View component */}
+        <Route
+          path="/book/:id"
+          render={props => (
+            <SingleBook {...props} favoriteBook={favoriteBook} />
+          )}
+          exact
+        />
+        <Route path="/error" component={ErrorView} exact />
+        <Redirect to="/error" />
       </Switch>
     </BrowserRouter>
   );

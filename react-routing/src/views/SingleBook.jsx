@@ -25,12 +25,18 @@ class SingleBook extends Component {
 
   loadBook = () => {
     const book = books.find(item => item.id === this.props.match.params.id);
-    this.setState({
-      book: book
-    });
+    if (book) {
+      this.setState({
+        book: book
+      });
+    } else {
+      this.props.history.push(`/error?originalUrl=${this.props.match.url}`);
+    }
   };
 
   render() {
+    const book = this.state.book;
+    const favoriteBook = this.props.favoriteBook;
     return (
       <div>
         {this.state.book && (
@@ -39,6 +45,10 @@ class SingleBook extends Component {
             <h1>{this.state.book.name}</h1>
             <h3>{this.state.book.author}</h3>
             <span>Published on {this.state.book.date}</span>
+            <strong>
+              This book {favoriteBook === book.name ? 'is' : 'is not'} my
+              favorite book
+            </strong>
           </div>
         )}
       </div>
